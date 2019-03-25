@@ -7,6 +7,7 @@
 ## INSTALLATION: ##
 Run the following in the install directory
 - $<INSTALL_DIR> docker-compose build
+- $<INSTALL_DIR> mkdir elastic-data
 
 ## PRE-RUN CONFIGURATION: ##
 You may need to run this on the host for the elastic search docker to start:
