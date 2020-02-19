@@ -1,55 +1,43 @@
-## PRE-INSTALLATION CONFIGURATION: ##
-Set the following in pycsw_docker/default.cfg:
-repository.filter = <ELASTIC_AGENT_HOST:AGENT_PORT>
-E.g
-    
-    [repository]
-    filter=http://10.0.2.15:9210/search
+# Metadata Services Deployment
 
-## INSTALLATION: ##
-Run the following in the install directory
-    
-    sudo docker-compose build
+Docker-based deployment of front- and back-end metadata services. This project provides
+separate docker-compose files for front- and back-end servers. Back-end containers should
+not be started on front-end servers and vice versa.
 
-## PRE-RUN CONFIGURATION: ##
-You may need to run this on the host for the elastic search docker to start:
+## Back-End
+
+This sets up the Elasticsearch instance and Elastic search agent on a back-end server.
+
+Note: In due course we will add docker config for deploying the CKAN metadata management instance.
+
+### Configuration
+You may need to run this on the host for the elasticsearch container to start:
 
     sudo sysctl -w vm.max_map_count=262144
 
-## RUNNING THE SERVICES: ##
-Run the following in the install directory
+### Installation / upgrade
+Run the following in the install directory:
+    
+    sudo docker-compose -f back-end.yml down
+    sudo docker-compose -f back-end.yml build --no-cache
+    sudo docker-compose -f back-end.yml up -d
 
-    sudo docker-compose up -d
+## Front-End
 
-## INITIALISING THE SEARCH INDEX ##
-Once the services are up and running, run the following on the host:
+This sets up PyCSW on a front-end server.
 
-    sudo docker exec -it search_agent python /srv/elastic-search-agent/agent/tests/test_create_index.py
-    sudo docker exec -it search_agent python /srv/elastic-search-agent/agent/tests/test_add.py
+Note: In due course we will add docker config for deploying the CKAN metadata discovery instance.
 
-## TESTING: ##
-Open a web browser and enter the following urls:
+### Configuration
+Set the `repository.filter` option in pycsw_docker/default.cfg to point to
+the Elastic search agent search API, e.g.
+    
+    [repository]
+    filter=http://es.saeon.dvn/search
 
-### 1) http://<ELASTIC_SEARCH_HOST>:9200/ ###
-You should see something like this:
-
-    name	"LHFiJcO"
-    cluster_name	"docker-cluster"
-    cluster_uuid	"HbYOC9NSQUadMQrJG8_KhQ"
-    version	{…}
-    tagline	"You Know, for Search"
-
-### 2) http://<ELASTIC_AGENT_HOST:9210> ###
-You should see something like this:
-
-    Welcome to the SAEON Metadata Search Agent
-    JSON API
-    Create Index
-    Create an index
-    .. etc
-
-### 3) http://127.0.0.1:8000/?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=full&resulttype=results&SortBy=dc:publisher:D ###
-
-You should see something like this:
-
-    <csw:GetRecordsResponse version="2.0.2" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd"><csw:SearchStatus timestamp="2019-03-20T12:02:42Z"/><csw:SearchResults nextRecord="0" numberOfRecordsMatched="2" numberOfRecordsReturned="2" recordSchema="http://www.opengis.net/cat/csw/2.0.2" elementSet="full"><csw:Record><dc:identifier>10.5072.2</dc:identifier><dc:title>Second Full DataCite XML Example</dc:title><dc:type>service</dc:type><dc:subject>101 computer science</dc:subject> ... etc
+### Installation / upgrade
+Run the following in the install directory:
+    
+    sudo docker-compose -f front-end.yml down
+    sudo docker-compose -f front-end.yml build --no-cache
+    sudo docker-compose -f front-end.yml up -d

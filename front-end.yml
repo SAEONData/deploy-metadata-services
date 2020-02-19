@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  pycsw:
+    build:
+      context: ./pycsw_docker
+      dockerfile: Dockerfile
+    container_name: pycsw
+    network_mode: host
+    restart: always
