@@ -1,4 +1,5 @@
 FROM python:2.7
+RUN apt-get update && apt-get install -y supervisor
 
 ARG CKAN_DB_URL
 ARG CKAN_URL
@@ -49,10 +50,13 @@ RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_scope = ODP.Metadata" ckan.in
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_id = not used" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_secret = not used" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.edit_url = ${IDENTITY_SERVICE_URL}/user/profile" ckan.ini
+# uncomment the following line to deploy locally with CKAN running on HTTP
+# RUN sed -i "/\[app:main\]/a ckan.openidconnect.no_verify_ssl_cert = true" ckan.ini
 RUN cat ckan.ini
 
 RUN paster db init -c ckan.ini
 RUN cd /srv/ckanext-metadata && paster metadata_framework initdb -c /srv/ckan/ckan.ini
 RUN cd /srv/ckanext-jsonpatch && paster jsonpatch initdb -c /srv/ckan/ckan.ini
 
-CMD ["paster", "serve", "ckan.ini"]
+COPY supervisord.conf /etc/supervisor/conf.d/
+CMD ["supervisord"]
