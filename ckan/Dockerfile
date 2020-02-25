@@ -35,7 +35,7 @@ RUN sed -i "s%ckan.site_url =.*%ckan.site_url = ${CKAN_URL}%" ckan.ini
 RUN sed -i "s/ckan.auth.user_create_groups =.*/ckan.auth.user_create_groups = true/" ckan.ini
 RUN sed -i "s/ckan.auth.create_user_via_api =.*/ckan.auth.create_user_via_api = true/" ckan.ini
 RUN sed -i "s%#solr_url =.*%solr_url = http://127.0.0.1:8983/solr%" ckan.ini
-RUN sed -i "s%ckan.plugins =.*%ckan.plugins = metadata_framework openidconnect jsonpatch metadata_elasticsearch metadata_infrastructure_ui%" ckan.ini
+RUN sed -i "s/ckan.plugins =.*/ckan.plugins = metadata_framework openidconnect jsonpatch metadata_elasticsearch metadata_infrastructure_ui/" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.metadata.doi_prefix = ${DOI_PREFIX}" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.metadata.elastic.search_agent_url = ${ELASTIC_AGENT_URL}" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.userinfo_endpoint = ${HYDRA_PUBLIC_URL}/userinfo" ckan.ini

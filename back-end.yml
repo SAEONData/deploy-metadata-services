@@ -5,36 +5,6 @@ volumes:
     {}
 
 services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
-    container_name: elasticsearch
-    network_mode: host
-    environment:
-      - cluster.name=docker-cluster
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - elastic-data:/usr/share/elasticsearch/data/
-    restart: always
-
-  elastic_search_agent:
-    build:
-      context: agent
-      dockerfile: Dockerfile
-    container_name: elastic_search_agent
-    network_mode: host
-    environment:
-      - ELASTIC_AGENT_HOST
-      - ELASTIC_AGENT_PORT
-      - ELASTIC_SEARCH_HOST
-      - ELASTIC_SEARCH_PORT
-    depends_on:
-      - elasticsearch
-    restart: always
-
   ckan:
     build:
       context: ckan
@@ -53,6 +23,36 @@ services:
     network_mode: host
     depends_on:
       - solr
+    restart: always
+
+  elastic_search_agent:
+    build:
+      context: agent
+      dockerfile: Dockerfile
+    container_name: elastic_search_agent
+    network_mode: host
+    environment:
+      - ELASTIC_AGENT_HOST
+      - ELASTIC_AGENT_PORT
+      - ELASTIC_SEARCH_HOST
+      - ELASTIC_SEARCH_PORT
+    depends_on:
+      - elasticsearch
+    restart: always
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    container_name: elasticsearch
+    network_mode: host
+    environment:
+      - cluster.name=docker-cluster
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elastic-data:/usr/share/elasticsearch/data/
     restart: always
 
   solr:
