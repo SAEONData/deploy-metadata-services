@@ -37,9 +37,9 @@ Create a `.env` file in the install directory and set the following environment 
 ### Installation / upgrade
 Run the following in the install directory:
     
-    sudo docker-compose -f back-end.yml down
-    sudo docker-compose -f back-end.yml build --no-cache
-    sudo docker-compose -f back-end.yml up -d
+    docker-compose -f back-end.yml down
+    docker-compose -f back-end.yml build --no-cache
+    docker-compose -f back-end.yml up -d
 
 ## Front-End
 
@@ -57,6 +57,6 @@ the Elastic search agent search API, e.g.
 ### Installation / upgrade
 Run the following in the install directory:
     
-    sudo docker-compose -f front-end.yml down
-    sudo docker-compose -f front-end.yml build --no-cache
-    sudo docker-compose -f front-end.yml up -d
+    docker-compose -f front-end.yml down
+    docker-compose -f front-end.yml build --no-cache
+    docker-compose -f front-end.yml up -d
