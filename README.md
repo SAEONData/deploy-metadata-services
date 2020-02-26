@@ -15,10 +15,9 @@ The following command needs to be run on the host in order for the elasticsearch
     sudo sysctl -w vm.max_map_count=262144
 
 ### Configuration
+Create a `.env` file in the install directory and set the following environment variables,
+which are injected into the CKAN configuration:
 
-Create a `.env` file in the install directory and set the following environment variables:
-
-#### CKAN
 - **`CKAN_URL`**: URL of the CKAN server
 - **`CKAN_DB_URL`**: URL of the CKAN database
 - **`DOI_PREFIX`**: SAEON DOI prefix
@@ -27,12 +26,6 @@ Create a `.env` file in the install directory and set the following environment 
 - **`HYDRA_ADMIN_URL`**: URL of the Hydra admin API
 - **`OAUTH2_CLIENT_SECRET`**: client secret for the CKAN UI, as registered in Hydra
 - **`IDENTITY_SERVICE_URL`**: URL of the [ODP Identity](https://github.com/SAEONData/ODP-Identity) service
-
-#### Elastic Search Agent
-- **`ELASTIC_AGENT_HOST`**: hostname / IP address of the agent
-- **`ELASTIC_AGENT_PORT`**: port number of the agent
-- **`ELASTIC_SEARCH_HOST`**: hostname / IP address of the Elasticsearch instance
-- **`ELASTIC_SEARCH_PORT`**: port number of the Elasticsearch instance (usually `9200`)
 
 ### Installation / upgrade
 Run the following in the install directory:
