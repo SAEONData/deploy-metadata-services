@@ -21,7 +21,6 @@ which are injected into the CKAN configuration:
 - **`CKAN_URL`**: URL of the CKAN server
 - **`CKAN_DB_URL`**: URL of the CKAN database
 - **`DOI_PREFIX`**: SAEON DOI prefix
-- **`ELASTIC_AGENT_URL`**: URL of the [Elastic Search Agent](https://github.com/SAEONData/elastic-search-agent)
 - **`HYDRA_PUBLIC_URL`**: URL of the Hydra public API
 - **`HYDRA_ADMIN_URL`**: URL of the Hydra admin API
 - **`OAUTH2_CLIENT_SECRET`**: client secret for the CKAN UI, as registered in Hydra

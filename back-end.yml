@@ -16,11 +16,11 @@ services:
         - CKAN_DB_URL
         - CKAN_URL
         - DOI_PREFIX
-        - ELASTIC_AGENT_URL
         - HYDRA_PUBLIC_URL
         - HYDRA_ADMIN_URL
         - OAUTH2_CLIENT_SECRET
         - IDENTITY_SERVICE_URL
+        - ELASTIC_AGENT_URL=http://localhost:9210
     container_name: ckan
     network_mode: host
     depends_on:
