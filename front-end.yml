@@ -1,10 +1,18 @@
 version: '3.5'
 
+networks:
+  pycsw-net:
+
 services:
   pycsw:
+    container_name: pycsw
     build:
       context: pycsw
       dockerfile: Dockerfile
-    container_name: pycsw
-    network_mode: host
+      args:
+        - ELASTIC_AGENT_SEARCH_URL
+    networks:
+      - pycsw-net
+    ports:
+      - "8000:8000"
     restart: always

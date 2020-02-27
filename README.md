@@ -40,11 +40,11 @@ This sets up PyCSW on a front-end server.
 Note: In due course we will add docker config for deploying the CKAN metadata discovery instance.
 
 ### Configuration
-Set the `repository.filter` option in pycsw_docker/default.cfg to point to
-the Elastic search agent search API, e.g.
-    
-    [repository]
-    filter=http://es.saeon.dvn/search
+Create a `.env` file in the install directory and set the following environment variables,
+which are injected into the PyCSW configuration:
+
+- **`ELASTIC_AGENT_SEARCH_URL`**: URL of the [Elastic Search Agent](https://github.com/SAEONData/elastic-search-agent)
+search API, e.g. `http://es.saeon.dvn/search`
 
 ### Installation / upgrade
 Run the following in the install directory:
