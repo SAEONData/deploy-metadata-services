@@ -50,8 +50,6 @@ RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_scope = ODP.Metadata" ckan.in
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_id = not used" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_secret = not used" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.edit_url = ${IDENTITY_SERVICE_URL}/user/profile" ckan.ini
-# uncomment the following line to deploy locally with CKAN running on HTTP
-# RUN sed -i "/\[app:main\]/a ckan.openidconnect.no_verify_ssl_cert = true" ckan.ini
 RUN cat ckan.ini
 
 RUN paster db init -c ckan.ini
