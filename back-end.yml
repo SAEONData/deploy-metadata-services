@@ -79,7 +79,7 @@ services:
 
   redis:
     container_name: redis
-    image: redis
+    image: redis:5
     networks:
       - ckan-net
     restart: always
