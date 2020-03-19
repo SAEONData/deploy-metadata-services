@@ -44,7 +44,7 @@ Create a `.env` file in the install directory and set the following environment 
 which are injected into the PyCSW configuration:
 
 - **`ELASTIC_AGENT_SEARCH_URL`**: URL of the [Elastic Search Agent](https://github.com/SAEONData/elastic-search-agent)
-search API, e.g. `http://es.saeon.dvn/search`
+search API, e.g. `http://es-agent.saeon.dvn/search`
 
 ### Installation / upgrade
 Run the following in the install directory:
