@@ -86,3 +86,10 @@ services:
     networks:
       - ckan-net
     restart: always
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3
+    networks:
+      - ckan-net
+    restart: always

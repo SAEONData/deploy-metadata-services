@@ -1,5 +1,5 @@
 FROM python:2.7
-RUN apt-get update && apt-get install -y supervisor rabbitmq-server
+RUN apt-get update && apt-get install -y supervisor
 
 ARG CKAN_DB_URL
 ARG CKAN_URL
