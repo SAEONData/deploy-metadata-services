@@ -18,7 +18,7 @@ WORKDIR /srv
 RUN curl -OL https://github.com/ckan/ckan/archive/ckan-2.8.2.tar.gz
 RUN tar xzf ckan-2.8.2.tar.gz
 RUN mv ckan-ckan-2.8.2 ckan
-RUN git clone -b development https://github.com/SAEONData/ckanext-metadata.git
+RUN git clone https://github.com/SAEONData/ckanext-metadata.git
 RUN git clone https://github.com/SAEONData/ckanext-jsonpatch.git
 RUN git clone https://github.com/SAEONData/ckanext-accesscontrol.git
 
