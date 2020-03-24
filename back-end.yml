@@ -24,6 +24,7 @@ services:
         - OAUTH2_CLIENT_SECRET
         - IDENTITY_SERVICE_URL
         - ELASTIC_AGENT_URL=http://elastic-search-agent:9210
+        - REDIS_URL=http://redis:6379/0
     networks:
       - ckan-net
       - elastic-net
