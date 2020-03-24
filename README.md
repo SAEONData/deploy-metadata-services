@@ -14,6 +14,10 @@ The following command needs to be run on the host in order for the elasticsearch
 
     sudo sysctl -w vm.max_map_count=262144
 
+To make the change permanent, edit the file `/etc/sysctl.conf` and add the following line:
+
+    vm.max_map_count=262144
+
 ### Configuration
 Create a `.env` file in the install directory and set the following environment variables,
 which are injected into the CKAN configuration:
