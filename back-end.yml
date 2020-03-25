@@ -15,6 +15,7 @@ services:
     build:
       context: ckan
       args:
+        - SERVER_ENV
         - CKAN_DB_URL
         - CKAN_URL
         - DOI_PREFIX

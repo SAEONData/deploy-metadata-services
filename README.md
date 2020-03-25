@@ -22,6 +22,7 @@ To make the change permanent, edit the file `/etc/sysctl.conf` and add the follo
 Create a `.env` file in the install directory and set the following environment variables,
 which are injected into the CKAN configuration:
 
+- **`SERVER_ENV`**: deployment environment: `development`|`testing`|`staging`|`production`
 - **`CKAN_URL`**: URL of the CKAN server
 - **`CKAN_DB_URL`**: URL of the CKAN database
 - **`DOI_PREFIX`**: SAEON DOI prefix

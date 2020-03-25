@@ -21,6 +21,7 @@ RUN cd ckanext-accesscontrol && pip install -r requirements.txt
 
 WORKDIR /srv/ckan
 
+ARG SERVER_ENV
 ARG CKAN_DB_URL
 ARG CKAN_URL
 ARG DOI_PREFIX
@@ -54,6 +55,7 @@ RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_scope = ODP.Metadata" ckan.in
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_id = not used" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.api_secret = not used" ckan.ini
 RUN sed -i "/\[app:main\]/a ckan.openidconnect.edit_url = ${IDENTITY_SERVICE_URL}/user/profile" ckan.ini
+RUN /bin/bash -c 'if [[ ${SERVER_ENV} == development ]]; then sed -i "/\[app:main\]/a ckan.openidconnect.no_verify_ssl_cert = true" ckan.ini; fi'
 RUN cat ckan.ini
 
 RUN paster db init -c ckan.ini
