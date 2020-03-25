@@ -14,7 +14,6 @@ services:
     container_name: ckan
     build:
       context: ckan
-      dockerfile: Dockerfile
       args:
         - CKAN_DB_URL
         - CKAN_URL
@@ -23,7 +22,7 @@ services:
         - HYDRA_ADMIN_URL
         - OAUTH2_CLIENT_SECRET
         - IDENTITY_SERVICE_URL
-        - ELASTIC_AGENT_URL=http://elastic-search-agent:9210
+        - ELASTIC_AGENT_URL=http://es-agent:9210
         - SOLR_URL=http://solr:8983/solr
         - REDIS_URL=http://redis:6379/0
         - RABBITMQ_HOST=rabbitmq
@@ -37,11 +36,10 @@ services:
       - redis
     restart: always
 
-  elastic-search-agent:
-    container_name: elastic-search-agent
+  es-agent:
+    container_name: es-agent
     build:
-      context: agent
-      dockerfile: Dockerfile
+      context: es_agent
     networks:
       - elastic-net
     ports:
@@ -77,7 +75,6 @@ services:
     container_name: solr
     build:
       context: solr
-      dockerfile: Dockerfile
     networks:
       - ckan-net
     restart: always

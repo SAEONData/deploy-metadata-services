@@ -1,18 +1,6 @@
 FROM python:2.7
 RUN apt-get update && apt-get install -y supervisor
 
-ARG CKAN_DB_URL
-ARG CKAN_URL
-ARG DOI_PREFIX
-ARG ELASTIC_AGENT_URL
-ARG HYDRA_PUBLIC_URL
-ARG HYDRA_ADMIN_URL
-ARG OAUTH2_CLIENT_SECRET
-ARG IDENTITY_SERVICE_URL
-ARG SOLR_URL
-ARG REDIS_URL
-ARG RABBITMQ_HOST
-
 WORKDIR /srv
 
 RUN curl -OL https://github.com/ckan/ckan/archive/ckan-2.8.2.tar.gz
@@ -32,6 +20,18 @@ RUN cd ckanext-accesscontrol && pip install -e .
 RUN cd ckanext-accesscontrol && pip install -r requirements.txt
 
 WORKDIR /srv/ckan
+
+ARG CKAN_DB_URL
+ARG CKAN_URL
+ARG DOI_PREFIX
+ARG ELASTIC_AGENT_URL
+ARG HYDRA_PUBLIC_URL
+ARG HYDRA_ADMIN_URL
+ARG OAUTH2_CLIENT_SECRET
+ARG IDENTITY_SERVICE_URL
+ARG SOLR_URL
+ARG REDIS_URL
+ARG RABBITMQ_HOST
 
 RUN paster make-config ckan ckan.ini
 RUN sed -i "s%sqlalchemy.url =.*%sqlalchemy.url = ${CKAN_DB_URL}%" ckan.ini
