@@ -35,6 +35,8 @@ services:
     depends_on:
       - solr
       - redis
+      - rabbitmq
+      - es-agent
     restart: always
 
   pycsw:
@@ -47,6 +49,8 @@ services:
       - elastic-net
     ports:
       - "8000:8000"
+    depends_on:
+      - es-agent
     restart: always
 
   es-agent:
