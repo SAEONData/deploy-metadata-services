@@ -62,5 +62,8 @@ RUN paster db init -c ckan.ini
 RUN cd /srv/ckanext-metadata && paster metadata_framework initdb -c /srv/ckan/ckan.ini
 RUN cd /srv/ckanext-jsonpatch && paster jsonpatch initdb -c /srv/ckan/ckan.ini
 
+COPY staging-ca.crt /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+
 COPY supervisord.conf /etc/supervisor/conf.d/
 CMD ["supervisord"]
