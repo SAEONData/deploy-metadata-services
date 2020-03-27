@@ -37,14 +37,24 @@ services:
       - redis
     restart: always
 
+  pycsw:
+    container_name: pycsw
+    build:
+      context: pycsw
+      args:
+        - ELASTIC_AGENT_SEARCH_URL=http://es-agent:9210/search
+    networks:
+      - elastic-net
+    ports:
+      - "8000:8000"
+    restart: always
+
   es-agent:
     container_name: es-agent
     build:
       context: es_agent
     networks:
       - elastic-net
-    ports:
-      - "9210:9210"
     environment:
       - ELASTIC_AGENT_HOST=localhost
       - ELASTIC_AGENT_PORT=9210
