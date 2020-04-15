@@ -1,5 +1,7 @@
 # Metadata Services Deployment
 
+***Note: This work has been incorporated into, and superseded by, the [Open Data Platform](https://github.com/SAEONData/Open-Data-Platform) project.***
+
 Docker-based deployment of metadata services, including:
 
 - CKAN metadata management server
